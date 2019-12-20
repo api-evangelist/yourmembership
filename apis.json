@@ -1,0 +1,74 @@
+{
+    "name": "YourMembership",
+    "description": "Built for associations and member-based organizations. Featuring membership software, award-winning learning management system & career center solutions.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1226-yourmembership.jpg",
+    "tags": [
+        "clubs",
+        "have api",
+        "membership management",
+        "social"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/yourmembership\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "YourMembership",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1226-yourmembership.jpg",
+            "humanURL": "https:\/\/www.yourmembership.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/yourmembership-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/yourmembership-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "https:\/\/www.yourmembership.com\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/www.yourmembership.com\/blog\/wp-rss.php"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/yourmembership-com"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/yourmembership-com"
+        },
+        {
+            "type": "Email",
+            "url": "connectwithus@yourmembership.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@yourmembership.com"
+        },
+        {
+            "type": "Email",
+            "url": "learningsupport@yourmembership.com"
+        },
+        {
+            "type": "Email",
+            "url": "YMPartnerReps@yourmembership.com"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/#!\/yourmembership"
+        }
+    ]
+}
