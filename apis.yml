@@ -1,0 +1,168 @@
+aid: yourmembership
+url: https://raw.githubusercontent.com/api-evangelist/yourmembership/refs/heads/main/apis.yml
+name: YourMembership
+kind: company
+description: >-
+  YourMembership is an association management system (AMS) and membership
+  management platform for professional associations, nonprofits, clubs, and
+  member-based organizations, covering member records and profiles, dues and
+  membership types, events and registration, online community, e-commerce/store,
+  fundraising, an online career center (YMCareers job board), and learning. It is
+  owned by Community Brands (now operating under Momentive Software / the Personify
+  portfolio). YourMembership exposes a documented developer API - a modern REST API
+  (base https://ws.yourmembership.com, OAuth-authenticated, with a Swagger UI and a
+  metadata document) plus a legacy XML/RPC API (v2.00), and a separate REST YMCareers
+  API for the job-board product (base https://api.careerwebsite.com/v1). API access
+  is license/partner gated - customers must license the REST API before an integration
+  partner can connect - so the full Swagger reference is not publicly enumerable, and
+  the endpoint set below is grounded in YourMembership's public integration guides and
+  SDKs and otherwise honestly modeled.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Membership Management
+- Association Management
+- AMS
+- Nonprofit
+- Events
+- Careers
+- Community Brands
+- Momentive Software
+created: '2026-07-05'
+modified: '2026-07-05'
+specificationVersion: '0.19'
+apis:
+- aid: yourmembership:yourmembership-members-api
+  name: YourMembership Members API
+  tags:
+  - Members
+  - Contacts
+  - Profiles
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.yourmembership.com/api/
+  baseURL: https://ws.yourmembership.com
+  properties:
+  - url: https://www.yourmembership.com/api/
+    type: Documentation
+  - url: https://ws.yourmembership.com/swagger-ui/
+    type: APIReference
+  - url: openapi/yourmembership-openapi.yml
+    type: OpenAPI
+  description: Read and manage member and contact records - member lists, profiles,
+    account details, custom fields, membership types, and groups - via the REST
+    MemberProfile and People endpoints under /Ams. Requests are OAuth-authenticated
+    after POST /Ams/Authenticate. Access requires licensing the REST API from
+    YourMembership. Endpoint paths beyond the documented Authenticate/MemberProfile/People
+    surface are modeled from public integration guides.
+- aid: yourmembership:yourmembership-events-api
+  name: YourMembership Events API
+  tags:
+  - Events
+  - Registration
+  - Calendar
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.yourmembership.com/api/
+  baseURL: https://ws.yourmembership.com
+  properties:
+  - url: https://www.yourmembership.com/api/
+    type: Documentation
+  - url: openapi/yourmembership-openapi.yml
+    type: OpenAPI
+  description: Retrieve events, event details, and event registrations (the YM Events
+    module) so that calendars and registration data can be synced to external
+    systems. Grounded in the documented Events search capability of the legacy XML
+    API and the YM Events integration surface; specific REST paths are modeled.
+- aid: yourmembership:yourmembership-certifications-api
+  name: YourMembership Certifications API
+  tags:
+  - Certifications
+  - Continuing Education
+  - Learning
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.yourmembership.com/api/
+  baseURL: https://ws.yourmembership.com
+  properties:
+  - url: https://www.yourmembership.com/api/
+    type: Documentation
+  - url: openapi/yourmembership-openapi.yml
+    type: OpenAPI
+  description: Track member certifications, credentials, and continuing-education (CE)
+    credits tied to a member record. YourMembership and Community Brands offer
+    certification and learning functionality; a standalone public certifications
+    API is not separately documented, so this surface is honestly modeled against
+    the member-centric data model (endpointsModeled).
+- aid: yourmembership:yourmembership-careers-api
+  name: YMCareers API
+  tags:
+  - Careers
+  - Jobs
+  - Job Board
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.careerwebsite.com/
+  baseURL: https://api.careerwebsite.com/v1
+  properties:
+  - url: https://api-doc.careerwebsite.com/
+    type: Documentation
+  - url: https://api-doc.careerwebsite.com/
+    type: APIReference
+  - url: openapi/yourmembership-openapi.yml
+    type: OpenAPI
+  description: REST API for the YMCareers online career center / job board. JSON
+    responses over https://api.careerwebsite.com/v1, authenticated with an
+    API_ACCESS_TOKEN (15-minute) or a non-expiring X-API-KEY. Covers job search,
+    lead generation, location autocomplete, job-seeker activity (resume uploads,
+    applications, job alerts), recruiter registration, and event reporting.
+    Credentials are requested from YMPartnerReps@momentivesoftware.com.
+- aid: yourmembership:yourmembership-content-api
+  name: YourMembership Content and Community API
+  tags:
+  - Content
+  - Community
+  - Groups
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.yourmembership.com/api/
+  baseURL: https://ws.yourmembership.com
+  properties:
+  - url: https://www.yourmembership.com/api/
+    type: Documentation
+  - url: openapi/yourmembership-openapi.yml
+    type: OpenAPI
+  description: Access online-community and content constructs - groups/subgroups,
+    member messaging (in-box, read/unread status), journals/content, and media -
+    that YourMembership exposes to organizations engaging their members. Grounded
+    in the documented community/messaging capability of the platform; specific REST
+    paths are modeled.
+- aid: yourmembership:yourmembership-commerce-api
+  name: YourMembership Commerce and Sales API
+  tags:
+  - Commerce
+  - Store
+  - Transactions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.yourmembership.com/api/
+  baseURL: https://ws.yourmembership.com
+  properties:
+  - url: https://www.yourmembership.com/api/
+    type: Documentation
+  - url: openapi/yourmembership-openapi.yml
+    type: OpenAPI
+  description: Retrieve e-commerce and financial data - YM Store orders and order
+    status (open, processed, shipped, closed, cancelled), transactions, dues
+    payments, and donation/fundraising exports - for reconciliation with finance
+    and CRM systems. Grounded in the documented store-order and system-admin export
+    calls of the legacy XML API; REST paths are modeled.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/yourmembership
+- type: Website
+  url: https://www.yourmembership.com
+- type: Documentation
+  url: https://www.yourmembership.com/api/
+- type: Plans
+  url: plans/yourmembership-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/yourmembership-rate-limits.yml
+- type: FinOps
+  url: finops/yourmembership-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

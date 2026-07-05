@@ -1,0 +1,101 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: YourMembership
+providerId: yourmembership
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Membership Management
+- Association Management
+- AMS
+- Nonprofit
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of YourMembership spend. YourMembership is sold as an annual,
+  quote-based SaaS subscription (not a usage-metered API product), owned by
+  Community Brands and operating under Momentive Software / the Personify
+  portfolio. The dominant costs are the annual platform subscription, a one-time
+  implementation/setup fee, and optional add-ons (data migration, training,
+  website work, integrations, YMCareers). The developer APIs do not carry a
+  separate per-call meter: the legacy XML API is included for customers, the REST
+  API is a licensed capability, and the YMCareers API is bundled with the
+  YMCareers product. Cost management is therefore about contract/subscription
+  optimization and renewal negotiation rather than per-request metering.
+notes: >-
+  All amounts are third-party estimates, not vendor list prices. Reviewers note
+  annual price increases at renewal, so budget for uplift. Reconcile actual
+  subscription, implementation, and API/YMCareers licensing terms with Momentive
+  Software.
+sources:
+- https://www.yourmembership.com/api/
+- https://momentivesoftware.com/solutions/association-management-software/yourmembership/
+- https://www.capterra.com/p/76329/YourMembership/pricing/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: YourMembership
+serviceCategory: Association and Membership Management Software
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: YourMembership AMS
+  ServiceCategory: Association and Membership Management Software
+  ProviderName: YourMembership
+  PublisherName: Momentive Software
+  InvoiceIssuerName: Momentive Software
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: annual_subscription
+  description: Annual SaaS subscription for the YourMembership AMS platform, quote-based.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - account
+  - organization
+- name: implementation
+  description: One-time implementation, setup, and onboarding charge.
+  unit: project
+  aggregation: sum
+  dimensions:
+  - account
+- name: add_ons
+  description: Optional add-ons - data migration, training, website work, integrations, YMCareers.
+  unit: item
+  aggregation: sum
+  dimensions:
+  - account
+  - module
+- name: rest_api_license
+  description: Licensed REST API access (the XML API is included; no per-call meter).
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track the annual subscription, one-time implementation, and each add-on/module (including REST API licensing and YMCareers) as distinct line items.
+- name: Allocation
+  description: Attribute the subscription and API licensing to the association program or department that owns the member data.
+- name: Optimization
+  description: Right-size modules and add-ons to actual use; negotiate renewal uplift proactively; prefer the included XML API or batched exports over paid integration work where feasible.
+- name: Accountability
+  description: Assign an owner to the vendor relationship; review renewal quotes annually against member count and module utilization.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

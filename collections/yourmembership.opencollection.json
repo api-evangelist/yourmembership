@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "YourMembership API",
+    "version": "1.0",
+    "description": "YourMembership AMS developer API. REST base https://ws.yourmembership.com (OAuth via /Ams/Authenticate) plus the YMCareers REST API at https://api.careerwebsite.com/v1. Owned by Community Brands / Momentive Software. License-gated; most operations are modeled from public integration guides and the legacy XML API v2.00. Confirmed: POST /Ams/Authenticate, MemberProfile (ReadContacts), People (ReadContact)."
+  },
+  "items": [
+    {
+      "info": { "name": "Authentication", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Authenticate (confirmed)", "type": "http" },
+          "http": { "method": "POST", "url": "https://ws.yourmembership.com/Ams/Authenticate" },
+          "docs": "Authenticate and obtain a session token. Requires a licensed REST API key."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Members", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Read Contacts / Member Profiles (confirmed)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/MemberProfile" },
+          "docs": "MemberProfile endpoint (ReadContacts). Member profiles, contacts, custom fields."
+        },
+        {
+          "info": { "name": "Read Contact (confirmed)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/People" },
+          "docs": "People endpoint (ReadContact). A single person/contact record."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Events", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List Events (modeled)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/Events" },
+          "docs": "Modeled. Events and event details (YM Events module)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Certifications", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List Certifications (modeled)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/Certifications" },
+          "docs": "Modeled. Member certifications, credentials, and CE credits."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Content and Community", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List Messages (modeled)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/Community/Messages" },
+          "docs": "Modeled. Community in-box messaging with read/unread status."
+        },
+        {
+          "info": { "name": "List Groups (modeled)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/Community/Groups" },
+          "docs": "Modeled. Community groups and subgroups."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Commerce and Sales", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List Store Orders (modeled)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/Store/Orders?status=open" },
+          "docs": "Modeled. YM Store orders filterable by status (open, processed, shipped, closed, cancelled)."
+        },
+        {
+          "info": { "name": "Export Transactions and Donations (modeled)", "type": "http" },
+          "http": { "method": "GET", "url": "https://ws.yourmembership.com/Ams/Exports/Transactions" },
+          "docs": "Modeled from the legacy XML API system-admin (Sa) export calls."
+        }
+      ]
+    },
+    {
+      "info": { "name": "YMCareers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Job Search (confirmed area)", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.careerwebsite.com/v1/jobs/search" },
+          "docs": "YMCareers job search. JSON. Auth via X-API-KEY or API_ACCESS_TOKEN. Path modeled within the confirmed job-search resource area."
+        }
+      ]
+    }
+  ]
+}

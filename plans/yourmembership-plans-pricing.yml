@@ -1,0 +1,135 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: YourMembership
+providerId: yourmembership
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Membership Management
+- Association Management
+- AMS
+- Nonprofit
+- Plans
+description: >-
+  YourMembership does not publish list pricing. It is sold as an annual SaaS
+  subscription with a custom, quote-based model through its sales team, and it is
+  owned by Community Brands (now operating under Momentive Software / the
+  Personify portfolio). Third-party reviews place the base association-management
+  subscription roughly in the $3,000-$20,000 per year range (a commonly cited
+  entry figure is around $3,990/year), plus one-time implementation/setup
+  (roughly $2,000-$5,000) and optional add-ons such as data migration, training,
+  website work, and integrations. The developer API is not sold as a standalone
+  metered product: the legacy XML API is described as available to customers at no
+  additional cost, and the REST API must be licensed - customers request/authorize
+  REST API access before integration partners can connect. The YMCareers job-board
+  API is part of the YMCareers career-center product and requires partner
+  credentials from Momentive Software.
+notes: >-
+  All figures are third-party estimates, not vendor list prices. Verify current
+  subscription tiers, REST API licensing terms, and YMCareers API access with
+  YourMembership / Momentive Software sales during reconciliation.
+sources:
+- https://www.yourmembership.com/api/
+- https://momentivesoftware.com/solutions/association-management-software/yourmembership/
+- https://www.capterra.com/p/76329/YourMembership/pricing/
+- https://www.trustradius.com/products/yourmembership-by-community-brands/pricing
+plans:
+- id: yourmembership-ams-subscription
+  name: YourMembership AMS Subscription (Quote-Based)
+  type: enterprise
+  description: >-
+    Annual SaaS subscription for the YourMembership association management
+    platform, priced by custom quote based on member count, modules, and
+    organization needs. Includes member management, dues, events, community,
+    store/e-commerce, and fundraising.
+  entries:
+  - label: Annual Subscription
+    name: annual_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (third-party estimates ~$3,000-$20,000/year)
+    userMultiplied: false
+  elements:
+  - name: Member Management
+  - name: Dues and Membership Types
+  - name: Events and Registration
+  - name: Online Community
+  - name: Store and E-Commerce
+  - name: Fundraising
+- id: yourmembership-implementation
+  name: Implementation and Setup
+  type: paid
+  description: >-
+    One-time onboarding, configuration, and optional add-ons (data migration,
+    training, website work, integrations). Billed separately from the annual
+    subscription.
+  entries:
+  - label: Implementation
+    name: implementation
+    type: flat
+    metric: project
+    limit: -1
+    timeFrame: onetime
+    geo: global
+    unit: 1
+    price: contact sales (third-party estimates ~$2,000-$5,000, plus add-ons)
+    userMultiplied: false
+  elements:
+  - name: Data Migration
+  - name: Training
+  - name: Website Setup
+  - name: Integrations
+- id: yourmembership-rest-api-license
+  name: REST API Access (Licensed)
+  type: paid
+  description: >-
+    Access to the modern REST API (ws.yourmembership.com). Customers must license
+    / authorize REST API access before an integration partner can connect. The
+    legacy XML API is described as included for customers at no additional cost.
+  entries:
+  - label: REST API License
+    name: rest_api_license
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (licensed add-on; XML API included at no extra cost)
+    userMultiplied: false
+  elements:
+  - name: OAuth-Authenticated REST API
+  - name: Swagger UI and Metadata
+  - name: Legacy XML API (included)
+- id: yourmembership-ymcareers-api
+  name: YMCareers API Access (Partner)
+  type: enterprise
+  description: >-
+    Access to the YMCareers job-board REST API (api.careerwebsite.com/v1) as part
+    of the YMCareers career-center product. Credentials (API_ACCESS_TOKEN /
+    X-API-KEY) are requested from Momentive Software partner reps.
+  entries:
+  - label: YMCareers API Access
+    name: ymcareers_api
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (YMPartnerReps@momentivesoftware.com)
+    userMultiplied: false
+  elements:
+  - name: Job Search API
+  - name: Lead Generation
+  - name: Job-Seeker Activity
+  - name: Recruiter Registration
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,141 @@
+{
+  "info": {
+    "name": "YourMembership API",
+    "description": "YourMembership association management system (AMS) developer API. Modern REST API base https://ws.yourmembership.com (OAuth via POST /Ams/Authenticate; endpoints under /Ams) plus the separate YMCareers REST API at https://api.careerwebsite.com/v1. Owned by Community Brands / Momentive Software. Access is license/partner gated - the vendor Swagger is not publicly enumerable, so most operations below are MODELED from public integration guides and the legacy XML API v2.00; confirmed endpoints are POST /Ams/Authenticate, MemberProfile (ReadContacts), and People (ReadContact).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://ws.yourmembership.com", "type": "string" },
+    { "key": "careersBaseUrl", "value": "https://api.careerwebsite.com/v1", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" },
+    { "key": "sessionToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Authenticate (confirmed)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{baseUrl}}/Ams/Authenticate", "host": ["{{baseUrl}}"], "path": ["Ams", "Authenticate"] },
+            "body": { "mode": "raw", "raw": "{\n  \"apiKey\": \"{{apiKey}}\"\n}" },
+            "description": "Authenticate and obtain a session token. Requires a licensed REST API key."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "Read Contacts / Member Profiles (confirmed)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/MemberProfile", "host": ["{{baseUrl}}"], "path": ["Ams", "MemberProfile"] },
+            "description": "MemberProfile endpoint (ReadContacts). Reads member profiles, contacts, and custom fields."
+          }
+        },
+        {
+          "name": "Read Contact (confirmed)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/People", "host": ["{{baseUrl}}"], "path": ["Ams", "People"] },
+            "description": "People endpoint (ReadContact). Reads a single person/contact record."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "List Events (modeled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/Events", "host": ["{{baseUrl}}"], "path": ["Ams", "Events"] },
+            "description": "Modeled. Lists events and event details (YM Events module)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Certifications",
+      "item": [
+        {
+          "name": "List Certifications (modeled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/Certifications", "host": ["{{baseUrl}}"], "path": ["Ams", "Certifications"] },
+            "description": "Modeled. Member certifications, credentials, and CE credits."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Content and Community",
+      "item": [
+        {
+          "name": "List Messages (modeled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/Community/Messages", "host": ["{{baseUrl}}"], "path": ["Ams", "Community", "Messages"] },
+            "description": "Modeled. Community in-box messaging with read/unread status."
+          }
+        },
+        {
+          "name": "List Groups (modeled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/Community/Groups", "host": ["{{baseUrl}}"], "path": ["Ams", "Community", "Groups"] },
+            "description": "Modeled. Community groups and subgroups."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Commerce and Sales",
+      "item": [
+        {
+          "name": "List Store Orders (modeled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/Store/Orders?status=open", "host": ["{{baseUrl}}"], "path": ["Ams", "Store", "Orders"], "query": [ { "key": "status", "value": "open" } ] },
+            "description": "Modeled. YM Store orders filterable by status (open, processed, shipped, closed, cancelled)."
+          }
+        },
+        {
+          "name": "Export Transactions and Donations (modeled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Ams/Exports/Transactions", "host": ["{{baseUrl}}"], "path": ["Ams", "Exports", "Transactions"] },
+            "description": "Modeled from the legacy XML API system-admin (Sa) export calls."
+          }
+        }
+      ]
+    },
+    {
+      "name": "YMCareers",
+      "item": [
+        {
+          "name": "Job Search (confirmed area)",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "X-API-KEY", "value": "{{apiKey}}" } ],
+            "url": { "raw": "{{careersBaseUrl}}/jobs/search", "host": ["{{careersBaseUrl}}"], "path": ["jobs", "search"] },
+            "description": "YMCareers job search. JSON. Auth via X-API-KEY or API_ACCESS_TOKEN. Path modeled within the confirmed job-search resource area."
+          }
+        }
+      ]
+    }
+  ]
+}

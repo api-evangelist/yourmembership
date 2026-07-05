@@ -1,0 +1,108 @@
+aid: yourmembership
+name: YourMembership
+review:
+  question: Does YourMembership expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-05'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. YourMembership's developer surface is
+    request/response REST over HTTPS (the YM REST API at
+    https://ws.yourmembership.com, OAuth-authenticated, plus the separate
+    YMCareers REST API at https://api.careerwebsite.com/v1) alongside a legacy
+    XML/RPC API (v2.00). None of these advertise a server-push transport -
+    there is no documented WebSocket (ws:// / wss://) or Server-Sent Events
+    endpoint on any YourMembership API to model.
+findings:
+  summary: |
+    YourMembership does not publish a documented public WebSocket API.
+    YourMembership is an association management system (AMS) / membership
+    management platform owned by Community Brands and now operating under
+    Momentive Software (Personify portfolio). Its documented developer surface
+    is entirely request/response HTTPS: a modern REST API (base
+    https://ws.yourmembership.com, OAuth-authenticated, with a Swagger UI at
+    /swagger-ui/ and a metadata document at /metadata, endpoints under /Ams),
+    a legacy XML/RPC API (v2.00) reached with a secret API key, and a separate
+    REST YMCareers job-board API (base https://api.careerwebsite.com/v1, JSON,
+    authenticated with an API_ACCESS_TOKEN or X-API-KEY). No realtime,
+    bidirectional, or streaming WebSocket endpoint is documented on any
+    YourMembership API as of the review date.
+  accessModel: |
+    API access is license/partner gated. YourMembership requires customers to
+    license the REST API before an integration partner (for example Higher
+    Logic) can connect. The Swagger UI and metadata document at
+    ws.yourmembership.com return HTTP 403 to anonymous requests, so the full
+    REST reference is not publicly enumerable. The legacy XML API is described
+    as available to customers at no additional cost and uses a secret key.
+    YMCareers credentials are requested from YMPartnerReps@momentivesoftware.com.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://ws.yourmembership.com
+      documented: true
+      note: YM REST API. OAuth after POST /Ams/Authenticate; endpoints under /Ams (MemberProfile, People, Events, etc.). License-gated; Swagger/metadata 403 to anonymous callers.
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.careerwebsite.com/v1
+      documented: true
+      note: YMCareers job-board REST API. JSON. Auth via API_ACCESS_TOKEN (15-min) or X-API-KEY (non-expiring).
+    - protocol: XML-RPC
+      scheme: https
+      baseURL: https://api.yourmembership.com
+      documented: true
+      note: Legacy XML API v2.00 reached with a secret API key. Method-oriented calls (Session, People/Profile, Events, Sa exports, Store orders). SDKs exist in Ruby and PHP.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in YourMembership's REST, XML, or YMCareers APIs as of the review date.
+  endpointsModeled: true
+  endpointsModeledNote: |
+    Because the REST Swagger reference is license-gated (403 to anonymous
+    callers), only a subset of endpoints is publicly confirmed: POST
+    /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People
+    endpoint (ReadContact). The Events, Certifications, Content/Community, and
+    Commerce/Sales surfaces are modeled from documented platform capability and
+    the legacy XML API method groups, not copied from a public spec. The
+    YMCareers resource areas (job search, lead generation, location autocomplete,
+    job-seeker activity, recruiter registration, event reporting) are confirmed
+    from the public YMCareers API reference.
+  endpointsConfirmed:
+    - POST https://ws.yourmembership.com/Ams/Authenticate
+    - GET  https://ws.yourmembership.com/Ams/MemberProfile   (ReadContacts)
+    - GET  https://ws.yourmembership.com/Ams/People           (ReadContact)
+    - REST https://api.careerwebsite.com/v1 (YMCareers - job search, leads, locations, job-seeker activity, recruiter registration, event reporting)
+sources:
+  - url: https://www.yourmembership.com/api/
+    type: Documentation
+    note: Official API landing page. REST base ws.yourmembership.com, OAuth, Swagger UI + metadata, getting-started PDFs.
+  - url: https://ws.yourmembership.com/swagger-ui/
+    type: APIReference
+    note: Swagger UI for the YM REST API. Returns HTTP 403 to anonymous requests (license-gated).
+  - url: https://ws.yourmembership.com/metadata
+    type: APIReference
+    note: REST services metadata document. 403 to anonymous requests.
+  - url: https://support.higherlogic.com/hc/en-us/articles/4410238657172-YourMembership-REST-API-Integration-Guide
+    type: IntegrationGuide
+    note: Higher Logic guide. Confirms MemberProfile (ReadContacts) and People (ReadContact) endpoints, /Ams paths, and that customers must license the REST API first.
+  - url: https://api-doc.careerwebsite.com/
+    type: APIReference
+    note: YMCareers REST API reference. Base api.careerwebsite.com/v1, JSON, API_ACCESS_TOKEN / X-API-KEY auth, resource areas enumerated.
+  - url: https://github.com/ECHOInternational/your_membership
+    type: SourceCode
+    note: Ruby SDK for the YourMembership XML API v2.00. Confirms method groups - Session/Auth, People/Profile, Events, Sa exports, Store orders.
+  - url: https://github.com/QuorumUS/ym-api
+    type: SourceCode
+    note: PHP client for the YourMembership XML API.
+  - url: https://empoweredmargins.com/what-do-i-need-to-know-about-ymyour-membership-apis/
+    type: Article
+    note: Notes the XML API is available to customers at no additional cost, uses a secret key, and can pull members, YM Events, YM Journals, and YM Store data.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on any YourMembership API. All
+    documented surfaces (YM REST, legacy XML, YMCareers REST) are
+    request/response over HTTPS, so no AsyncAPI document was created. The
+    apis.yml catalogs the members, events, certifications, careers, content,
+    and commerce surfaces, marking modeled endpoints honestly.

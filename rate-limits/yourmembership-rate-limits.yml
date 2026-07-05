@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: YourMembership
+providerId: yourmembership
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Membership Management
+- Association Management
+- AMS
+- Rate Limiting
+- Quotas
+description: >-
+  YourMembership does not publish fixed numeric rate limits for its developer
+  APIs in public documentation. The REST API (ws.yourmembership.com) is
+  license-gated - its Swagger UI and metadata document return HTTP 403 to
+  anonymous callers - so any per-account or per-endpoint request caps are only
+  visible to licensed customers/partners. The legacy XML API historically applied
+  session-based throttling and expected reasonable, batched polling for exports
+  rather than high-frequency calls. The separate YMCareers REST API
+  (api.careerwebsite.com/v1) authenticates with a short-lived API_ACCESS_TOKEN
+  (15-minute expiry) that must be refreshed, or a non-expiring X-API-KEY; token
+  lifetime is the primary documented throttling-adjacent constraint.
+notes: >-
+  Numeric per-minute or per-day limits are not documented publicly. Verify current
+  request quotas, session limits, and token refresh cadence in the licensed REST
+  Swagger UI and with your YourMembership / Momentive Software account
+  representative during reconciliation.
+sources:
+- https://www.yourmembership.com/api/
+- https://ws.yourmembership.com/swagger-ui/
+- https://api-doc.careerwebsite.com/
+- https://empoweredmargins.com/what-do-i-need-to-know-about-ymyour-membership-apis/
+responseCodes:
+  throttled: 429
+limits:
+- name: REST API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: License-gated REST API; numeric request caps are not documented publicly.
+- name: XML API Sessions
+  scope: session
+  metric: calls
+  limit: not published
+  notes: Legacy XML API is session-based; batch exports and avoid high-frequency polling.
+- name: YMCareers Access Token Lifetime
+  scope: token
+  metric: minutes
+  limit: 15 (token expiry)
+  notes: API_ACCESS_TOKEN expires after 15 minutes and must be refreshed via the token endpoint; X-API-KEY does not expire.
+- name: Export Volume
+  scope: account
+  metric: records
+  limit: batch-oriented
+  notes: Member/transaction/donation exports are intended to be pulled in batches (deltas by modified date) rather than repeatedly in full.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Incremental Sync
+  description: Use modified-since / delta queries and pagination for member and transaction data instead of full re-pulls.
+- name: Token Refresh
+  description: For YMCareers, refresh the 15-minute API_ACCESS_TOKEN proactively, or use a non-expiring X-API-KEY for server-to-server integrations.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
