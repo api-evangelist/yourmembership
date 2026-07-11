@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/yourmembership-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://ws.yourmembership.com/Ams/Authenticate
+    scopes: 0
+  description: OAuth authentication for the YM REST API, established via POST /Ams/Authenticate.
+    The YMCareers API instead uses an API_ACCESS_TOKEN (15-minute) Authorization header or a
+    non-expiring X-API-KEY header.
+  sources:
+  - openapi/yourmembership-openapi.yml
