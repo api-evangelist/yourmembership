@@ -151,6 +151,10 @@ apis:
     and CRM systems. Grounded in the documented store-order and system-admin export
     calls of the legacy XML API; REST paths are modeled.
 common:
+- type: Authentication
+  url: authentication/yourmembership-authentication.yml
+- type: OAuthScopes
+  url: scopes/yourmembership-scopes.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/yourmembership
 - type: Website

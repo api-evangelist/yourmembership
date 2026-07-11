@@ -1,0 +1,35 @@
+generated: '2026-07-11'
+method: searched
+source: openapi/yourmembership-openapi.yml
+docs: https://www.yourmembership.com/wp-content/uploads/2021/02/YM_Getting_Started_OAuth_2021.pdf
+schemes:
+- name: oauth2
+  source: openapi/yourmembership-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://ws.yourmembership.com/Ams/Authenticate
+  - flow: authorizationCode
+    authorizationUrl: https://{your-ym-site}/lock.aspx
+    tokenUrl: https://ws.yourmembership.com/OAuth/GetAccessToken
+    source: https://www.yourmembership.com/wp-content/uploads/2021/02/YM_Getting_Started_OAuth_2021.pdf
+  description: OAuth authentication for the YM REST API, established via POST /Ams/Authenticate.
+    OAuth apps are configured in YM (API Configuration > OAuth Management); the member authorizes
+    the app at the site's lock.aspx page with app_id, redirect_uri, and scope parameters, the
+    returned code is exchanged at POST /OAuth/GetAccessToken, and the access token is passed to
+    POST /Ams/Authenticate to create the API session (X-SS-ID header). The YMCareers API instead
+    uses an API_ACCESS_TOKEN (15-minute) Authorization header or a non-expiring X-API-KEY header.
+scopes:
+- scope: basic_profile
+  description: Grants access to the authorized member's basic profile information via the
+    BasicMemberProfile service (GET /Ams/{ClientID}/Member/{MemberID}/BasicMemberProfile).
+  sources:
+  - https://www.yourmembership.com/wp-content/uploads/2021/02/YM_Getting_Started_OAuth_2021.pdf
+- scope: full_profile
+  description: Grants access to the authorized member's full profile information via the
+    MemberProfile service; required when an app needs more than the basic profile fields.
+  sources:
+  - https://www.yourmembership.com/wp-content/uploads/2021/02/YM_Getting_Started_OAuth_2021.pdf
+note: These two scopes are the only ones published in YourMembership's Getting Started with
+  OAuth guide; the REST API also exposes a GET /Ams/{ClientID}/OAuthScopes metadata operation
+  (ScopeID, ScopeName, DisplayName, IsDefault, GranularScope) indicating scopes are managed
+  per-site in OAuth Management, but no additional scope values are publicly documented.
