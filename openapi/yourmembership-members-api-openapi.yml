@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: YourMembership Authentication Members API
+  description: 'A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).
+
+
+    Access is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.'
+  version: '1.0'
+  contact:
+    name: YourMembership (Momentive Software)
+    url: https://www.yourmembership.com/api/
+servers:
+- url: https://ws.yourmembership.com
+  description: YourMembership REST API (YM AMS)
+- url: https://api.careerwebsite.com/v1
+  description: YMCareers REST API (job board / career center)
+security:
+- oauth2: []
+tags:
+- name: Members
+  description: Member and contact records, profiles, and custom fields (confirmed MemberProfile / People endpoints).
+paths:
+  /Ams/MemberProfile:
+    get:
+      tags:
+      - Members
+      summary: Read member profiles / contacts (ReadContacts)
+      description: Confirmed endpoint. Reads member profiles and contact records, including custom fields, via the MemberProfile resource. Used by integration partners' ReadContacts operation.
+      operationId: readContacts
+      parameters:
+      - name: since
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Return records modified since this timestamp.
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of member profiles / contacts.
+    post:
+      tags:
+      - Members
+      summary: Create or update a member profile
+      description: Modeled. Create or update member records and profile data. The public integration guides confirm member create/update capability; the exact request shape is not published.
+      operationId: upsertMemberProfile
+      responses:
+        '200':
+          description: Member profile created or updated.
+  /Ams/People:
+    get:
+      tags:
+      - Members
+      summary: Read an individual contact (ReadContact)
+      description: Confirmed endpoint. Reads a single person/contact record via the People resource. Used by integration partners' ReadContact operation.
+      operationId: readContact
+      parameters:
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Member/contact identifier.
+      responses:
+        '200':
+          description: A single contact record.
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth authentication for the YM REST API, established via POST /Ams/Authenticate. The YMCareers API instead uses an API_ACCESS_TOKEN (15-minute) Authorization header or a non-expiring X-API-KEY header.
+      flows:
+        clientCredentials:
+          tokenUrl: https://ws.yourmembership.com/Ams/Authenticate
+          scopes: {}

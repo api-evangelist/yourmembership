@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: YourMembership Authentication API
+  description: 'A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).
+
+
+    Access is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.'
+  version: '1.0'
+  contact:
+    name: YourMembership (Momentive Software)
+    url: https://www.yourmembership.com/api/
+servers:
+- url: https://ws.yourmembership.com
+  description: YourMembership REST API (YM AMS)
+- url: https://api.careerwebsite.com/v1
+  description: YMCareers REST API (job board / career center)
+security:
+- oauth2: []
+tags:
+- name: Authentication
+  description: OAuth authentication for the YM REST API.
+paths:
+  /Ams/Authenticate:
+    post:
+      tags:
+      - Authentication
+      summary: Authenticate and obtain a session/token
+      description: Authenticate to the YourMembership REST API. Confirmed endpoint. Returns the session context / token subsequently presented on /Ams requests. Requires that the organization has licensed the REST API.
+      operationId: authenticate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                apiKey:
+                  type: string
+                  description: Licensed API key issued to the organization.
+                saPasscode:
+                  type: string
+                  description: System administrator passcode where required.
+      responses:
+        '200':
+          description: Authenticated. Returns a session token.
+        '401':
+          description: Authentication failed or REST API not licensed.
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth authentication for the YM REST API, established via POST /Ams/Authenticate. The YMCareers API instead uses an API_ACCESS_TOKEN (15-minute) Authorization header or a non-expiring X-API-KEY header.
+      flows:
+        clientCredentials:
+          tokenUrl: https://ws.yourmembership.com/Ams/Authenticate
+          scopes: {}

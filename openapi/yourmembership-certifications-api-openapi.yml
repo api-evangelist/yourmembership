@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: YourMembership Authentication Certifications API
+  description: 'A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).
+
+
+    Access is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.'
+  version: '1.0'
+  contact:
+    name: YourMembership (Momentive Software)
+    url: https://www.yourmembership.com/api/
+servers:
+- url: https://ws.yourmembership.com
+  description: YourMembership REST API (YM AMS)
+- url: https://api.careerwebsite.com/v1
+  description: YMCareers REST API (job board / career center)
+security:
+- oauth2: []
+tags:
+- name: Certifications
+  description: Member certifications, credentials, and continuing-education credits. Modeled.
+paths:
+  /Ams/Certifications:
+    get:
+      tags:
+      - Certifications
+      summary: List member certifications and CE credits
+      description: Modeled. Returns certifications, credentials, and continuing-education credits associated with member records. YourMembership / Community Brands offer certification and learning functionality, but a standalone public certifications API is not separately documented.
+      operationId: listCertifications
+      parameters:
+      - name: memberId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of certifications / CE records.
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth authentication for the YM REST API, established via POST /Ams/Authenticate. The YMCareers API instead uses an API_ACCESS_TOKEN (15-minute) Authorization header or a non-expiring X-API-KEY header.
+      flows:
+        clientCredentials:
+          tokenUrl: https://ws.yourmembership.com/Ams/Authenticate
+          scopes: {}
