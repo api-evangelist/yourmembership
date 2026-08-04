@@ -1,0 +1,24 @@
+{
+  "provider": "yourmembership",
+  "sources": [
+    "yourmembership-authentication-api-openapi.yml",
+    "yourmembership-certifications-api-openapi.yml",
+    "yourmembership-commerce-and-sales-api-openapi.yml",
+    "yourmembership-content-and-community-api-openapi.yml",
+    "yourmembership-events-api-openapi.yml",
+    "yourmembership-members-api-openapi.yml"
+  ],
+  "outputs": [
+    "yourmembership-authentication-api-openapi.yml",
+    "yourmembership-certifications-api-openapi.yml",
+    "yourmembership-commerce-and-sales-api-openapi.yml",
+    "yourmembership-content-and-community-api-openapi.yml",
+    "yourmembership-events-api-openapi.yml",
+    "yourmembership-members-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
