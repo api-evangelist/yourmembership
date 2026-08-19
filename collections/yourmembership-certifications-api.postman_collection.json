@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "a93b2474-1c21-4d93-8119-9b0893419cad",
+      "name": "Certifications",
+      "description": {
+        "content": "Member certifications, credentials, and continuing-education credits. Modeled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f937bd0d-5e22-4f83-ac27-93f493ad19fa",
+          "name": "List member certifications and CE credits",
+          "request": {
+            "name": "List member certifications and CE credits",
+            "description": {
+              "content": "Modeled. Returns certifications, credentials, and continuing-education credits associated with member records. YourMembership / Community Brands offer certification and learning functionality, but a standalone public certifications API is not separately documented.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "Certifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "memberId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34737d1a-e73b-4f8e-a04a-785bfc9ccfd6",
+              "name": "A list of certifications / CE records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Certifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ws.yourmembership.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ws.yourmembership.com/Ams/Authenticate"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ea6d316-8d71-4a4a-9982-762a55c9cb67",
+    "name": "YourMembership Authentication Certifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).\n\nAccess is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.\n\nContact Support:\n Name: YourMembership (Momentive Software)",
+      "type": "text/plain"
+    }
+  }
+}

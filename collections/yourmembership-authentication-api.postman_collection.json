@@ -1,0 +1,186 @@
+{
+  "item": [
+    {
+      "id": "52028ac0-d860-4850-8d63-974713515cab",
+      "name": "Authentication",
+      "description": {
+        "content": "OAuth authentication for the YM REST API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c94cd15-74bd-4be1-a556-fa8b9e277692",
+          "name": "Authenticate and obtain a session/token",
+          "request": {
+            "name": "Authenticate and obtain a session/token",
+            "description": {
+              "content": "Authenticate to the YourMembership REST API. Confirmed endpoint. Returns the session context / token subsequently presented on /Ams requests. Requires that the organization has licensed the REST API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "Authenticate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiKey\": \"<string>\",\n  \"saPasscode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2de078ce-25db-43a4-bebe-d130c09b6b10",
+              "name": "Authenticated. Returns a session token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"saPasscode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae6f4ee1-9375-4c54-90f0-a987b4bbf304",
+              "name": "Authentication failed or REST API not licensed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiKey\": \"<string>\",\n  \"saPasscode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ws.yourmembership.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ws.yourmembership.com/Ams/Authenticate"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0dc4a89e-95bd-403e-b53c-f5c1d760c70e",
+    "name": "YourMembership Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).\n\nAccess is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.\n\nContact Support:\n Name: YourMembership (Momentive Software)",
+      "type": "text/plain"
+    }
+  }
+}

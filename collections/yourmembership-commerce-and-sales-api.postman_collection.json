@@ -1,0 +1,290 @@
+{
+  "item": [
+    {
+      "id": "7005de54-c4bb-4d72-bc29-f8570bc4c24d",
+      "name": "Commerce and Sales",
+      "description": {
+        "content": "YM Store orders, transactions, dues, and donation exports. Modeled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f47299af-701b-4455-bf4d-3a091191d112",
+          "name": "List store orders",
+          "request": {
+            "name": "List store orders",
+            "description": {
+              "content": "Modeled from the legacy XML API store-order calls. Returns YM Store orders filterable by status (open, processed, shipped, closed, cancelled).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "Store",
+                "Orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "236de1c1-aa5d-4757-9b9d-4155105586a0",
+              "name": "A list of store orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Store",
+                    "Orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e35bb9e4-66e6-4c44-95b1-ef5377ffc6ba",
+          "name": "Get a store order",
+          "request": {
+            "name": "Get a store order",
+            "description": {
+              "content": "Modeled. Returns details for a single store order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "Store",
+                "Orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dbf72e6-dd78-4cbc-8d65-1b09f05a95ed",
+              "name": "A single store order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Store",
+                    "Orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acb06bc8-7eeb-4604-87c0-07b4aebd03dc",
+          "name": "Export transactions and donations",
+          "request": {
+            "name": "Export transactions and donations",
+            "description": {
+              "content": "Modeled from the legacy XML API system-admin (Sa) export calls, which expose donation and transaction exports for finance reconciliation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "Exports",
+                "Transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39178d06-1fbd-43d7-a49c-364395fca8bd",
+              "name": "A transactions / donations export.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Exports",
+                    "Transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ws.yourmembership.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ws.yourmembership.com/Ams/Authenticate"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f0a1753-a7f9-44bc-b8d9-da32ebc3243d",
+    "name": "YourMembership Authentication Commerce and Sales API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).\n\nAccess is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.\n\nContact Support:\n Name: YourMembership (Momentive Software)",
+      "type": "text/plain"
+    }
+  }
+}

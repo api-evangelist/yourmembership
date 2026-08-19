@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "YourMembership Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://ws.yourmembership.com/Ams/Authenticate",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and obtain a session/token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.yourmembership.com/Ams/Authenticate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate to the YourMembership REST API. Confirmed endpoint. Returns the session context / token subsequently presented on /Ams requests. Requires that the organization has licensed the REST API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "d3d1ee99-6447-46be-a537-dd9016737f40",
+      "name": "Members",
+      "description": {
+        "content": "Member and contact records, profiles, and custom fields (confirmed MemberProfile / People endpoints).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b70720f7-8522-42ee-bd35-e339ae7a164f",
+          "name": "Read member profiles / contacts (ReadContacts)",
+          "request": {
+            "name": "Read member profiles / contacts (ReadContacts)",
+            "description": {
+              "content": "Confirmed endpoint. Reads member profiles and contact records, including custom fields, via the MemberProfile resource. Used by integration partners' ReadContacts operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "MemberProfile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Return records modified since this timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5792ec75-9007-4da1-ab5e-5b6f66d39885",
+              "name": "A list of member profiles / contacts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "MemberProfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "186a581a-ec8f-4cb5-8df6-a11e80ba785e",
+          "name": "Create or update a member profile",
+          "request": {
+            "name": "Create or update a member profile",
+            "description": {
+              "content": "Modeled. Create or update member records and profile data. The public integration guides confirm member create/update capability; the exact request shape is not published.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "MemberProfile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7886fd0-0aa3-42b0-b263-41a21e64122e",
+              "name": "Member profile created or updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "MemberProfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72539a5b-0624-4485-b652-ec15fcfa83c1",
+          "name": "Read an individual contact (ReadContact)",
+          "request": {
+            "name": "Read an individual contact (ReadContact)",
+            "description": {
+              "content": "Confirmed endpoint. Reads a single person/contact record via the People resource. Used by integration partners' ReadContact operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "People"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Member/contact identifier."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06dd62c6-d6d4-47bf-af5c-4080f5eaa4d6",
+              "name": "A single contact record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "People"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ws.yourmembership.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ws.yourmembership.com/Ams/Authenticate"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3edfb265-5471-4cff-9d67-33817607ae81",
+    "name": "YourMembership Authentication Members API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).\n\nAccess is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.\n\nContact Support:\n Name: YourMembership (Momentive Software)",
+      "type": "text/plain"
+    }
+  }
+}

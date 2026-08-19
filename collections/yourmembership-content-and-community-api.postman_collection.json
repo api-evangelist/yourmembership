@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "e1e7e06c-9351-40b2-a88c-2f55dcf6fe21",
+      "name": "Content and Community",
+      "description": {
+        "content": "Groups, messaging, journals, and community content. Modeled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f701c199-fee5-4b85-9748-0d8253af749b",
+          "name": "List member messages",
+          "request": {
+            "name": "List member messages",
+            "description": {
+              "content": "Modeled. Reads community in-box messaging with read/unread status. The legacy XML API documents sent/received message calls and read status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "Community",
+                "Messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "968bcb09-e12e-496a-a17a-ef58987c1e92",
+              "name": "A list of member messages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Community",
+                    "Messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba9e2d7a-4e48-4831-a3ec-2e1961a4ec54",
+          "name": "List groups / subgroups",
+          "request": {
+            "name": "List groups / subgroups",
+            "description": {
+              "content": "Modeled. Lists community groups and subgroups and their membership.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ams",
+                "Community",
+                "Groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6696c9c6-0569-48b7-82f1-383e0aae2e67",
+              "name": "A list of groups.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ams",
+                    "Community",
+                    "Groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ws.yourmembership.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ws.yourmembership.com/Ams/Authenticate"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fae88185-9417-40f9-968c-f57633028862",
+    "name": "YourMembership Authentication Content and Community API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A description of the YourMembership developer API surface. YourMembership is an association management system (AMS) / membership management platform owned by Community Brands (now operating under Momentive Software / the Personify portfolio). This document covers the modern REST API (base https://ws.yourmembership.com, OAuth-authenticated, endpoints under /Ams) and references the separate YMCareers REST API (base https://api.careerwebsite.com/v1).\n\nAccess is license/partner gated: customers must license the REST API before an integration partner can connect, and the vendor Swagger UI and metadata document return HTTP 403 to anonymous callers. As a result only a subset of paths is publicly confirmed - POST /Ams/Authenticate, the MemberProfile endpoint (ReadContacts) and the People endpoint (ReadContact). The remaining Events, Certifications, Content/Community, and Commerce/Sales operations here are honestly MODELED from documented platform capability and the legacy XML API (v2.00) method groups; they are not copied from a public specification and the exact request/response shapes will differ. Confirm against the licensed Swagger UI at https://ws.yourmembership.com/swagger-ui/ before building.\n\nContact Support:\n Name: YourMembership (Momentive Software)",
+      "type": "text/plain"
+    }
+  }
+}

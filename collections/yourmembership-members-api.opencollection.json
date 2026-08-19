@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "YourMembership Authentication Members API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://ws.yourmembership.com/Ams/Authenticate",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read member profiles / contacts (ReadContacts)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.yourmembership.com/Ams/MemberProfile",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return records modified since this timestamp."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Confirmed endpoint. Reads member profiles and contact records, including custom fields, via the MemberProfile resource. Used by integration partners' ReadContacts operation."
+        },
+        {
+          "info": {
+            "name": "Create or update a member profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ws.yourmembership.com/Ams/MemberProfile"
+          },
+          "docs": "Modeled. Create or update member records and profile data. The public integration guides confirm member create/update capability; the exact request shape is not published."
+        },
+        {
+          "info": {
+            "name": "Read an individual contact (ReadContact)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.yourmembership.com/Ams/People",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Member/contact identifier."
+              }
+            ]
+          },
+          "docs": "Confirmed endpoint. Reads a single person/contact record via the People resource. Used by integration partners' ReadContact operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

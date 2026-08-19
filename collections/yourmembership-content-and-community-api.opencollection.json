@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "YourMembership Authentication Content and Community API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://ws.yourmembership.com/Ams/Authenticate",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content and Community",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List member messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.yourmembership.com/Ams/Community/Messages"
+          },
+          "docs": "Modeled. Reads community in-box messaging with read/unread status. The legacy XML API documents sent/received message calls and read status."
+        },
+        {
+          "info": {
+            "name": "List groups / subgroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ws.yourmembership.com/Ams/Community/Groups"
+          },
+          "docs": "Modeled. Lists community groups and subgroups and their membership."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
