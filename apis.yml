@@ -35,6 +35,15 @@ tags:
 - Membership Management
 - Association Management
 - AMS
+- Non-Profit
+- Event
+- Careers
+- Community Brands
+- Momentive Software
+tags_raw:
+- Membership Management
+- Association Management
+- AMS
 - Nonprofit
 - Events
 - Careers
@@ -122,6 +131,8 @@ apis:
   humanURL: https://www.yourmembership.com/api/
   baseURL: https://ws.yourmembership.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
