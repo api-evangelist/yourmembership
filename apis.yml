@@ -89,6 +89,8 @@ apis:
   humanURL: https://www.yourmembership.com/api/
   baseURL: https://ws.yourmembership.com
   tags:
+  - Certification
+  tags_raw:
   - Certifications
   properties:
   - type: OpenAPI
