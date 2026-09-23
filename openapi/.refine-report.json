@@ -1,12 +1,7 @@
 {
   "provider": "yourmembership",
   "sources": [
-    "yourmembership-authentication-api-openapi.yml",
-    "yourmembership-certifications-api-openapi.yml",
-    "yourmembership-commerce-and-sales-api-openapi.yml",
-    "yourmembership-content-and-community-api-openapi.yml",
-    "yourmembership-events-api-openapi.yml",
-    "yourmembership-members-api-openapi.yml"
+    "_original/yourmembership-openapi.yml"
   ],
   "outputs": [
     "yourmembership-authentication-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "yourmembership-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "yourmembership-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yourmembership-certifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yourmembership-commerce-and-sales-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yourmembership-content-and-community-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yourmembership-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yourmembership-members-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
