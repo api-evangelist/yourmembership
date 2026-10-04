@@ -179,6 +179,9 @@ apis:
   - type: APIReference
     url: https://api-doc.careerwebsite.com/
 common:
+- type: CapabilityMap
+  url: capabilities/yourmembership-capability-edges.yml
+  name: YourMembership Business Capability Map
 - type: AgenticAccess
   url: agentic-access/yourmembership-agentic-access.yml
 - type: DomainSecurity
